@@ -1,0 +1,25 @@
+name: Dart CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./interfaces/flutter 
+
+    container:
+      image:  google/dart:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: flutter pub get
+      working-directory: ${{env.working-directory}}
+    - name: Run tests
+      run: flutter test
+      working-directory: ${{env.working-directory}}
