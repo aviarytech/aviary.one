@@ -1,6 +1,5 @@
 import 'package:aviary_one/constants.dart';
 import 'package:flutter/material.dart';
-import '../components/home.dart';
 
 class MainNav extends StatefulWidget {
   @override
@@ -11,7 +10,6 @@ class _MainNavState extends State<MainNav> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    Home(),
     Text(
       'Credentials',
       style: kOptionStyle,
@@ -74,4 +72,7 @@ class _MainNavState extends State<MainNav> {
       ),
     );
   }
+}
+
+void main() {
 }
