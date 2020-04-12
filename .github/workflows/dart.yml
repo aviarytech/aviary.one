@@ -19,12 +19,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       uses: steebchen/flutter@v1.0.0
+      working-directory: ${{env.working-directory}}
       with:
         args: pub get
-      working-directory: ${{env.working-directory}}
 
     - name: Run tests
       uses: steebchen/flutter@v1.0.0
+      working-directory: ${{env.working-directory}}
       with:
         args: test
-      working-directory: ${{env.working-directory}}
