@@ -18,8 +18,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-      run: flutter pub get
+      uses: steebchen/flutter@v1.0.0
+      with:
+        args: pub get
       working-directory: ${{env.working-directory}}
+
     - name: Run tests
-      run: flutter test
+      uses: steebchen/flutter@v1.0.0
+      with:
+        args: test
       working-directory: ${{env.working-directory}}
