@@ -1,6 +1,9 @@
 
+import 'package:aviary_one/screens/connections.dart';
+import 'package:aviary_one/screens/credentials.dart';
+import 'package:aviary_one/screens/home.dart';
+import 'package:aviary_one/screens/messages.dart';
 import 'package:flutter/material.dart';
-import './screens/main_nav.dart';
 import 'constants.dart';
 
 void main() => runApp(AviaryID());
@@ -12,13 +15,19 @@ class AviaryID extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
+      initialRoute: '/',
       theme: ThemeData.dark().copyWith(
         // overriding the defaults
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: kScaffoldBackgroundColor,
         accentColor: kAccentColor,
       ),
-      home: MainNav(),
+      routes: {
+        '/': (context) => HomeView(),
+        '/credentials': (context) => CredentialsView(),
+        '/connections': (context) => ConnectionsView(),
+        '/messages': (context) => MessagesView()
+      }
     );
   }
 }

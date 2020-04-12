@@ -1,6 +1,6 @@
 import 'package:aviary_one/constants.dart';
 import 'package:flutter/material.dart';
-import '../components/home.dart';
+import 'package:flutter/foundation.dart';
 
 class MainNav extends StatefulWidget {
   @override
@@ -9,43 +9,24 @@ class MainNav extends StatefulWidget {
 
 class _MainNavState extends State<MainNav> {
   int _selectedIndex = 0;
+  BuildContext _context;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Text(
-      'Credentials',
-      style: kOptionStyle,
-    ),
-    Text(
-      'Scan',
-      style: kOptionStyle,
-    ),
-    Text(
-      'Notifications',
-      style: kOptionStyle,
-    ),
-    Text(
-      'Settings',
-      style: kOptionStyle,
-    ),
+  static List<String> _routes = [
+    '/',
+    '/credentials',
+    '/connections',
+    '/messages'
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  void _onItemTapped(int routeIndex) {
+    _selectedIndex = routeIndex;
+    Navigator.pushNamed(_context, _routes[_selectedIndex]);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Aviary ID'),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
+    _context = context;
+    return BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.code),
@@ -57,21 +38,16 @@ class _MainNavState extends State<MainNav> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_box),
-            title: Text('Scan'),
+            title: Text('Connections'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            title: Text('Notifications'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('Settings'),
+            title: Text('Messages'),
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: kSelectedNavColor,
-        onTap: _onItemTapped,
-      ),
+        onTap: _onItemTapped
     );
   }
 }
